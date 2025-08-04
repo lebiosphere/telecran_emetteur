@@ -4,6 +4,13 @@ input.onGesture(Gesture.Shake, function () {
 let message = ""
 let dy = ""
 let dx = ""
+basic.showLeds(`
+    # # # # #
+    . . # . .
+    # # # # #
+    . . # . .
+    . . # . .
+    `)
 radio.setGroup(197)
 serial.redirectToUSB()
 let oldMessage = "X0000Y0000"
