@@ -16,11 +16,11 @@ serial.redirectToUSB()
 let oldMessage = "X0000Y0000"
 basic.forever(function () {
     basic.pause(50)
-    dx = convertToText(Math.round(input.compassHeading()))
+    dx = convertToText(Math.round(input.rotation(Rotation.Pitch)))
     while (dx.length < 4) {
         dx = "0" + dx
     }
-    dy = convertToText(Math.round(143.5))
+    dy = convertToText(Math.round(input.rotation(Rotation.Roll)))
     while (dy.length < 4) {
         dy = "0" + dy
     }
