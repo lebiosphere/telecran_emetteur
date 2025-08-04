@@ -1,10 +1,25 @@
+input.onGesture(Gesture.Shake, function () {
+    serial.writeLine("efface")
+})
+let message = ""
+let dy = ""
+let dx = ""
 radio.setGroup(197)
 serial.redirectToUSB()
-let dx = 0
-let dy = 0
+let oldMessage = "X0000Y0000"
 basic.forever(function () {
     basic.pause(50)
-    serial.writeValue("dx", dx)
-    serial.writeValue("dy", dy)
-    serial.writeLine("")
+    dx = convertToText(Math.round(input.compassHeading()))
+    while (dx.length < 4) {
+        dx = "0" + dx
+    }
+    dy = convertToText(Math.round(143.5))
+    while (dy.length < 4) {
+        dy = "0" + dy
+    }
+    message = "X" + dx + "Y" + dy
+    if (message != oldMessage) {
+        oldMessage = message
+        serial.writeLine(message)
+    }
 })
